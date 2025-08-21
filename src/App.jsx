@@ -1,16 +1,22 @@
-import { motion } from "framer-motion";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import About from "./components/About";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <motion.h1
-        className="text-5xl font-bold text-blue-500"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-      >
-        Welcome to MedLink, Doctor
-      </motion.h1>
+    <div className="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+      {/* Navbar */}
+      <Navbar />
+
+      {/* Main Content */}
+      <main className="flex-grow">
+        <Hero />
+        <About />
+      </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
