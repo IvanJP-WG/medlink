@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import DarkModeToggle from "./DarkModeToggle";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const navItems = ["About", "Skills", "Portfolio", "Blog", "Contact"];
 
   return (
     <motion.nav
@@ -18,8 +21,8 @@ function Navbar() {
         </h1>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8 font-medium">
-          {["About", "Skills", "Portfolio", "Blog", "Contact"].map((item) => (
+        <div className="hidden md:flex items-center space-x-8 font-medium">
+          {navItems.map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -28,6 +31,9 @@ function Navbar() {
               {item}
             </a>
           ))}
+
+          {/* Dark Mode Toggle */}
+          <DarkModeToggle />
         </div>
 
         {/* Mobile Menu Button */}
@@ -43,16 +49,22 @@ function Navbar() {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-white dark:bg-gray-900 px-6 pb-4 space-y-3">
-          {["About", "Skills", "Portfolio", "Blog", "Contact"].map((item) => (
+        <div className="md:hidden bg-white dark:bg-gray-900 px-6 pb-4 space-y-3 flex flex-col">
+          {navItems.map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
               className="block hover:text-teal-600 transition"
+              onClick={() => setIsOpen(false)} // close menu on click
             >
               {item}
             </a>
           ))}
+
+          {/* Dark Mode Toggle in Mobile Menu */}
+          <div className="mt-2">
+            <DarkModeToggle />
+          </div>
         </div>
       )}
     </motion.nav>

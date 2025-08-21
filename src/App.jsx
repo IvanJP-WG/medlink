@@ -2,7 +2,9 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
-import Portfolio from "./components/Portfolio";
+import Portfolio from "./components/Portfolio"; // only once
+import Blog from "./components/Blog";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
         <About />
         <Skills />
         <Portfolio />
+        <Blog />
+        <Contact />
       </main>
 
       {/* Footer */}
