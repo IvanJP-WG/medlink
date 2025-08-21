@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import AppointmentModal from "./AppointmentModal"; // import the modal
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -9,6 +10,7 @@ function Contact() {
     message: "",
   });
   const [status, setStatus] = useState("");
+  const [modalOpen, setModalOpen] = useState(false); // modal state
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -62,25 +64,27 @@ function Contact() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-teal-500"
-          />
-          <input
+            className="px-4 py-2 rounded-lg border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-600"
+            />
+
+            <input
             type="email"
             name="email"
             placeholder="Your Email"
             value={formData.email}
             onChange={handleChange}
             required
-            className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-teal-500"
-          />
-          <textarea
+            className="px-4 py-2 rounded-lg border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-600"
+            />
+
+            <textarea
             name="message"
             placeholder="Your Message"
             value={formData.message}
             onChange={handleChange}
             required
             rows="5"
-            className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-600 dark:focus:ring-teal-500 resize-none"
+            className="px-4 py-2 rounded-lg border border-gray-300 text-black focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none"
           ></textarea>
           <button
             type="submit"
@@ -93,15 +97,18 @@ function Contact() {
 
         {/* Social Links & CTA Buttons */}
         <motion.div
-            className="flex-1 flex flex-col items-center gap-6" // center everything horizontally
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          className="flex-1 flex flex-col items-center gap-6"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
-        {/* Live CTA: Book Consultation Demo */}
-          <button className="px-6 py-3 bg-teal-500 text-white font-medium rounded-xl hover:bg-teal-600 transition">
-             Book Consultation
+          {/* Live CTA: Book Consultation Demo */}
+          <button
+            className="px-6 py-3 bg-teal-500 text-white font-medium rounded-xl hover:bg-teal-600 transition"
+            onClick={() => setModalOpen(true)} // open modal on click
+          >
+            Book Consultation
           </button>
 
           <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
@@ -132,6 +139,9 @@ function Contact() {
           </div>
         </motion.div>
       </div>
+
+      {/* Appointment Modal */}
+      <AppointmentModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </section>
   );
 }

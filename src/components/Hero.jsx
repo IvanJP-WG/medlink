@@ -8,7 +8,7 @@ function Hero() {
     >
       {/* Profile Picture */}
       <motion.img
-        src="/profile.jpg"
+        src="/src/assets/profile.jpg"
         alt="Dr. Ivan Christopher"
         className="w-36 h-36 md:w-44 md:h-44 rounded-full shadow-xl object-cover mb-6 border-4 border-white dark:border-gray-800"
         initial={{ scale: 0, opacity: 0 }}
